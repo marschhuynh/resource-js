@@ -1,3 +1,5 @@
 import BaseResource from './resource';
 import { Model, Attribute } from './decorator';
-export { BaseResource, Model, Attribute };
+import { ModuleOption } from './module';
+declare const ResourceSetup: (namespace: string, options: ModuleOption) => void;
+export { BaseResource, Model, Attribute, ResourceSetup };

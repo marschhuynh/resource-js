@@ -1,12 +1,14 @@
-import { BaseResource, Model, Attribute } from "../dist";
+import { BaseResource, Model, Attribute, ResourceSetup } from "../dist";
 
-@Model('/post/<string:_id>')
+ResourceSetup('default', { base_url: 'https://api.me.com' })
+
+@Model('/post', '/post/<string:_id>')
 class Post extends BaseResource {
 
-    @Attribute("title", {type: 'string'})
+    @Attribute({type: 'string'})
     title: string;
 
-    @Attribute("content", {type: 'string'})
+    @Attribute()
     content: string;
 
     static meta() {
@@ -38,7 +40,7 @@ async function main() {
         instance.content = "Content (edited)"
         await instance.save();
     } catch(e) {
-        console.log('Error 2', e.response.data);
+        console.log('Error 2', e);
     }
 }
 

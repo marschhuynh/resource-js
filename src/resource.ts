@@ -59,7 +59,7 @@ export default class BaseResource extends DefaultModel {
     }
 
     static get datalayer() {
-        return new HTTPLayer();
+        return new HTTPLayer('default');
     }
 
     static get config() {

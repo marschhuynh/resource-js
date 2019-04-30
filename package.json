@@ -2,12 +2,13 @@
   "name": "resource-js",
   "version": "1.0.0-beta",
   "description": "Resource exchange for js",
-  "main": "index.js",
+  "main": "dist",
   "author": "Marsch Huynh (marsch.huynh@gmail.com))",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "webpack --mode=development --config webpack.config.js",
+    "build": "webpack --mode=production --config webpack.config.js",
+    "watch": "webpack --mode=development --config webpack.config.js",
     "test": "babel-node --presets @babel/preset-env test/index.js"
   },
   "devDependencies": {

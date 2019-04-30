@@ -1,11 +1,6 @@
 import axios from 'axios';
 import { IDataLayer } from './interface';
-
-const Axios = axios.create({
-    baseURL: "http://me.com:5000",
-    timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar'}
-});
+import Module, { ModuleOption } from '../module';
 
 
 function urlBuilder(url: string): string {
@@ -13,13 +8,33 @@ function urlBuilder(url: string): string {
 }
 
 class HTTPLayer implements IDataLayer {
+    _namespace: string
+    _maner: any
+    static INSTANCE: { [index:string]: HTTPLayer } = {}
+    
+    constructor(namespace: string) {
+        this._namespace = namespace;
+        if (!HTTPLayer.INSTANCE[namespace]) {
+            HTTPLayer.INSTANCE[namespace] = this;
+        }
+        const moduleOptions: ModuleOption = Module.getModule(this._namespace).options;
+        console.log('Module options', moduleOptions);
+        
+        this._maner = axios.create({
+            baseURL: moduleOptions.base_url,
+            timeout: 1000,
+        });
+        HTTPLayer.INSTANCE[namespace] = this;
+        return HTTPLayer.INSTANCE[namespace];
+    }
+
     _request(method: string, url: string, data?: any) {
-        if (data) return Axios({
+        if (data) return this._maner({
             method, 
             url: urlBuilder(url),
             data
         });
-        return Axios({
+        return this._maner({
             method,
             url: urlBuilder(url)
         });
