@@ -21,23 +21,27 @@
     - save(): save a resource items
     - delete(): delete a resource items
 
+### Setup module
+
+```ts
+ResourceSetup('default', { base_url: 'https://api.me.com' })
+```
+
 ### Create a new resource
 
 ```ts
+@Model('/post', '/post/<string:_id>')
 class Post extends BaseResource {
-    title: string
-    content: string
-    
-    static schema() {
-        return {
-            title: 'string',
-            content: 'string'
-        }
-    }
+
+    @Attribute({type: 'string'})
+    title: string;
+
+    @Attribute()
+    content: string;
 
     static meta() {
         return {
-            item_url: '/post/<string:_id>/<int:age>',
+            item_url: '/post/<string:_id>',
             list_url: '/post'
         }
     }
