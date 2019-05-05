@@ -38,13 +38,6 @@ class Post extends BaseResource {
 
     @Attribute()
     content: string;
-
-    static meta() {
-        return {
-            item_url: '/post/<string:_id>',
-            list_url: '/post'
-        }
-    }
 }
 ```
 

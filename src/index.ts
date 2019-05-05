@@ -1,7 +1,7 @@
 import BaseResource from './resource';
 import { Model, Attribute } from './decorator';
 import Module, { ModuleOption } from './module';
-
+import { FilterService } from './service';
 
 const ResourceSetup = (namespace: string = 'default', options: ModuleOption) => {
     console.log('Setup module', namespace);
@@ -17,5 +17,6 @@ export {
     BaseResource, 
     Model, 
     Attribute, 
-    ResourceSetup
+    ResourceSetup,
+    FilterService
 };
