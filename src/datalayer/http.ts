@@ -18,10 +18,9 @@ class HTTPLayer implements IDataLayer {
             HTTPLayer.INSTANCE[namespace] = this;
         }
         const moduleOptions: ModuleOption = Module.getModule(this._namespace).options;
-        console.log('Module options', moduleOptions);
         
         this._maner = axios.create({
-            baseURL: moduleOptions.base_url,
+            baseURL: moduleOptions.BASE_URL,
             timeout: 1000,
         });
         HTTPLayer.INSTANCE[namespace] = this;

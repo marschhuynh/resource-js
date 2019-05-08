@@ -1,5 +1,7 @@
 export type ModuleOption = {
-    base_url: string
+    BASE_URL: string,
+    LIST_DATA_KEY: string
+    LIST_META_KEY: string
 }
 
 export default class Module {
@@ -8,7 +10,6 @@ export default class Module {
 
     constructor(namespace: string = 'default', options?: ModuleOption) {
         this._options = options;
-        console.log('New module', namespace);
         
         Module.INSTANCE[namespace] = this;
     }

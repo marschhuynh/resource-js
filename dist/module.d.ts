@@ -1,5 +1,7 @@
 export declare type ModuleOption = {
-    base_url: string;
+    BASE_URL: string;
+    LIST_DATA_KEY: string;
+    LIST_META_KEY: string;
 };
 export default class Module {
     private static INSTANCE;

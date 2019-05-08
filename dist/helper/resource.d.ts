@@ -1,6 +1,6 @@
 import { ViewParam, ResourceConfig } from '../types';
 declare function item_transform<T>(response: any, newInstance: any): T;
-declare function list_transform<T>(response: any, newInstance: any): T[];
+declare function list_transform<T>(response: any, newInstance: any): any;
 export declare const DefaultConfig: {
     item_transform: typeof item_transform;
     list_transform: typeof list_transform;

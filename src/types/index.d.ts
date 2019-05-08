@@ -10,6 +10,7 @@ declare type ResourceConfig = {
 declare type MetaParam = {
     page: number,
     max_results: number,
+    total: number
 }
 
 declare type ViewParam = {

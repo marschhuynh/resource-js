@@ -8,8 +8,6 @@ class DefaultModel {
     _etag: string
     _updated: string
     _created: string
-
-    
 }
 
 export default class BaseResource extends DefaultModel {
@@ -67,10 +65,13 @@ export default class BaseResource extends DefaultModel {
         return Object.assign({}, DefaultConfig, meta);
     }
 
-    static async QUERY(view: ViewParam = {}): Promise<any[]> {
+    static async QUERY(view: ViewParam = {}, meta: boolean = false) {
         const url: string = ResourceHelper.getListUrl(this.config, view);
         const response = await this.datalayer.get(url);
-        return this.list_transform(response, this);
+        if (meta) {
+            return this.list_transform(response, this);
+        }
+        return this.list_transform(response, this)['_items'];
     }
 
     static async CREATE(data: Object): Promise<any> {
@@ -91,7 +92,7 @@ export default class BaseResource extends DefaultModel {
         return (this as any).item_transform(response, this);
     }
 
-    static async DELETE(view: ViewParam = {},): Promise<boolean> {
+    static async DELETE(view: ViewParam = {}): Promise<boolean> {
         const url: string = ResourceHelper.getItemUrl(this.config, view)
         const response = await this.datalayer.delete(url);
         return true;

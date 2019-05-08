@@ -6,9 +6,11 @@ function item_transform<T>(response: any, newInstance: any): T {
     return newInstance(data)
 }
 
-function list_transform<T>(response: any, newInstance: any): T[] {
-    const data: {_items: T[], meta: MetaParam} = response['data'];
-    return data['_items'].map(item => newInstance(item));
+function list_transform<T>(response: any, newInstance: any): any {
+    let data: {_items: T[], _meta: MetaParam} = response['data'];
+    data['_items'] = data['_items'].map(item => newInstance(item));
+    data['_meta'] = data['_meta'];
+    return data;
 }
 
 export const DefaultConfig = {
