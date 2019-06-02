@@ -14,7 +14,7 @@
     - CREATE(data: Object) Resource : create a new resource
     - UPDATE(id, data: Object) Resource : update a resource
     - REPLACE(id, data: Object) Resource : replace a resource
-    - DELETE(id) Resource : delete a resource
+    - DELETE(id) Boolean : delete a resource
 - Items methods:
     - create(data): save a resource items
     - update(id, data): save a resource items
@@ -27,7 +27,7 @@
 ResourceSetup('default', { base_url: 'https://api.me.com' })
 ```
 
-### Create a new resource
+### Deleration resource
 
 ```ts
 @Model('/post', '/post/<string:_id>')
@@ -38,15 +38,38 @@ class Post extends BaseResource {
 
     @Attribute()
     content: string;
+
+    @Attribute()
+    author: string;
 }
+
 ```
+
 
 ### Query list resource
 
 ```ts
-    const result = Resource.QUERY({
-        params: { name: "thien" },
+    const instances = Post.QUERY({
+        params: { title: "This is a title" },
         sort: { name: 1 },
         meta: { page: 1, max_results: 25 }
     })
+    instances[0].author = 'admin'
+    instances[0].save()
+```
+
+
+### Find one resource
+```ts
+    const instance = Post.FIND('this is a id');
+    instance.author = "new name";
+    instance.save();
+```
+
+
+### Create a new resource
+```ts
+    const instance = Post.CREATE({title: "This is a title", content: "Content of this post"});
+    instance.content = "Edited"
+    instance.save()
 ```

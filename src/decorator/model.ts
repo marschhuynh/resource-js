@@ -1,7 +1,7 @@
-import { BaseResource } from "..";
-
 type AttributeType = {
-    type: string
+    type: string,
+    required?: boolean,
+    pattern?: string,
 }
 
 export function Model(list_url: string, item_url: string, namespace: string = 'default') {
@@ -23,7 +23,7 @@ export function Attribute(option: AttributeType = {type: 'string'}): Function {
         if (!target.constructor.schema) {
             target.constructor.schema = {}
         }
-        target.constructor.schema[propertyKey] = option.type;
+        target.constructor.schema[propertyKey] = option;
 
         return target;
     }
