@@ -4,6 +4,8 @@ import FilterService from './filter';
 export default class PaginationService<T> {
     __query: any
     __data: Array<T> = []
+    __selectedItems: Array<T> = []
+    __activeItems: T
     __resource: T
     __fetching: Boolean
     __meta: any
