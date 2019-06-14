@@ -18,7 +18,7 @@ export default class Module {
         if (Module.INSTANCE[namespace]) {
            return Module.INSTANCE[namespace] 
         }
-        throw Error(`Namespace [${namespace}] is not exist. Please setup Resource Module before use it.`)
+        throw Error(`Namespace [${namespace}] is not exist. Please setup Resource Module before using it.`)
     }
 
     get options() {

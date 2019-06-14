@@ -89,6 +89,7 @@ export default class PaginationService<T> {
 
     async _fetchData() {
         // Begin fetching process
+        // Output will be a list instance of Resource
         this.__fetching = true;
         return await (this.__resource as any).QUERY(this.query, true);
     }
@@ -108,5 +109,5 @@ export default class PaginationService<T> {
     refresh = async () => {
         // Fetching process
         return await this._setResponse(await this._fetchData());
-    } 
+    }
 }
