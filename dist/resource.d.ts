@@ -11,7 +11,9 @@ export default class BaseResource extends DefaultModel {
     _data: IRawParams;
     _config: ResourceConfig;
     _changed: string[];
+    static _schema: any;
     constructor(data?: any);
+    static readonly schema: any;
     static item_transform(response: any, Resource: any): any;
     static list_transform(response: any, Resource: any): any;
     static readonly datalayer: HTTPLayer;

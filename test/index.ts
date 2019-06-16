@@ -13,7 +13,6 @@ class Post extends BaseResource {
 }
 
 async function main() {
-    console.log("Get Schema", (Post as any).schema)
     // try {
     //     const data = await Post.QUERY({
     //         meta: {
@@ -38,4 +37,8 @@ async function main() {
     // }
 }
 
-main()
+async function schema() {
+    console.log("Get Schema", Post.schema)
+}
+
+schema()
