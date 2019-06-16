@@ -15,6 +15,7 @@ export default class BaseResource extends DefaultModel {
     _data: IRawParams
     _config: ResourceConfig
     _changed: string[] = []
+    static _schema: any
 
     constructor(data: any = {}) {
         super();
@@ -46,6 +47,10 @@ export default class BaseResource extends DefaultModel {
                 });
             }
         }
+    }
+
+    static get schema() {
+        return this._schema;
     }
 
     static item_transform(response: any, Resource: any) {
