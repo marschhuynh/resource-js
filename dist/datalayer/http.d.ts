@@ -1,4 +1,4 @@
-import { IDataLayer } from './interface';
+import { IDataLayer } from './interface'
 declare class HTTPLayer implements IDataLayer {
     _namespace: string;
     _maner: any;
@@ -13,4 +13,4 @@ declare class HTTPLayer implements IDataLayer {
     replace(url: string, data: Record<string, any>): any;
     delete(url: string): any;
 }
-export default HTTPLayer;
+export default HTTPLayer

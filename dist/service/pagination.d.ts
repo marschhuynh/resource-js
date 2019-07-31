@@ -1,4 +1,4 @@
-import FilterService from './filter';
+import FilterService from './filter'
 export default class PaginationService<T> {
     __query: any;
     __data: T[];

@@ -19,7 +19,7 @@ export function Model(list_url: string, item_url: string = '', namespace: string
 }
 
 export function Attribute(option: AttributeType = {type: 'string'}): Function {
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    return function(target: any, propertyKey: string) {
         if (!target.constructor._schema) {
             target.constructor._schema = {}
         }
