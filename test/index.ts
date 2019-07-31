@@ -2,7 +2,8 @@ import { BaseResource, Model, Attribute, ResourceSetup } from "../src";
 
 ResourceSetup('default', { BASE_URL: 'https://api.me.com', LIST_DATA_KEY: '_items', LIST_META_KEY: '_meta' })
 
-@Model('/post', '/post/<string:_id>')
+// @Model('/post', '/post/<string:_id>')
+@Model('/post')
 class Post extends BaseResource {
 
     @Attribute({type: 'string', required: true})

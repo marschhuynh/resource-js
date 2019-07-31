@@ -4,7 +4,7 @@ type AttributeType = {
     pattern?: string,
 }
 
-export function Model(list_url: string, item_url?: string, namespace: string = 'default') {
+export function Model(list_url: string, item_url: string = '', namespace: string = 'default') {
     return function(target: any) {
         const class_meta = target.meta && target.meta() || {}
         target.meta = () => {
