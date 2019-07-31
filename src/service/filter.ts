@@ -14,21 +14,21 @@
     }
 */
 
-type FilterItem = {
-    active?: boolean
-    key: string
-    op?: string
-    value: number | string | Array<number> | Array<string> | FilterItem | FilterItem[]
+interface FilterItem {
+    active?: boolean;
+    key: string;
+    op?: string;
+    value: number | string | number[] | string[] | FilterItem | FilterItem[];
 }
 
 export default class FilterService {
     [index: string]: any
-    __filter: {[key:string]: FilterItem}
+    __filter: {[key: string]: FilterItem}
     __defaultFilter: any
 
     constructor(defaultFilter: any = {}) {
-        this.__defaultFilter = defaultFilter;
-        this.__filter = {};
+        this.__defaultFilter = defaultFilter
+        this.__filter = {}
 
         for (let f in this.__defaultFilter) {
             this.activeFilter(f, this.__defaultFilter[f])
@@ -36,40 +36,40 @@ export default class FilterService {
     }
 
     isFilterActive(key: string) {
-        return Boolean(this.__filter[key]);
+        return Boolean(this.__filter[key])
     }
 
     activeFilter(key: string, value: FilterItem) {
-        this.__filter[key] = value;
-        this.__filter[key].active = true;
+        this.__filter[key] = value
+        this.__filter[key].active = true
     }
 
     deActiveFilter(key: string) {
-        this.__filter[key].active = false;
+        this.__filter[key].active = false
     }
 
     op__default(filter: any) {
-        const { value } = filter;
+        const { value } = filter
         return value
     }
 
     op__eq(filter: any) {
-        const { value } = filter;
+        const { value } = filter
         return { '$eq': value}
     }
 
     op__gt(filter: any) {
-        const { value } = filter;
+        const { value } = filter
         return { '$gt': value}
     }
 
     op__lt(filter: any) {
-        const { value } = filter;
+        const { value } = filter
         return { '$lt': value}
     }
 
     op__or = (filter: any) => {
-        const { value } = filter;
+        const { value } = filter
         if (value as FilterService) {
             return { '$or': value.map((item: FilterItem) => this._compile(item))}
         }
@@ -77,7 +77,7 @@ export default class FilterService {
     }
 
     op__and = (filter: any) => {
-        const { value } = filter;
+        const { value } = filter
         if (value as FilterService) {
             return { '$and': value.map((item: FilterItem) => this._compile(item))}
         }
@@ -86,25 +86,25 @@ export default class FilterService {
 
     get_op = (opName: string): Function => {
         if (this[opName]) {
-            return this[opName]; 
+            return this[opName] 
         }
-        return this.op__default;
+        return this.op__default
     }
 
     _compile(filter: FilterItem) {
         const operator: Function = this.get_op(`op__${filter.op}`)
-        return operator(filter); 
+        return operator(filter) 
     }
 
     compileFilter() {
         const result: any = {}
-        const filter = Object.assign({}, this.__defaultFilter, this.__filter);
+        const filter = Object.assign({}, this.__defaultFilter, this.__filter)
         for (let key in filter) {
             const filter = this.__filter[key]
             if (filter.active) {
-                result[key] = this._compile(filter);
+                result[key] = this._compile(filter)
             }
         }
-        return result;
+        return result
     }
 }

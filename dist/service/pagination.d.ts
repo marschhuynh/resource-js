@@ -1,11 +1,11 @@
 import FilterService from './filter';
 export default class PaginationService<T> {
     __query: any;
-    __data: Array<T>;
-    __selectedItems: Array<T>;
+    __data: T[];
+    __selectedItems: T[];
     __activeItems: T;
     __resource: T;
-    __fetching: Boolean;
+    __fetching: boolean;
     __meta: any;
     filterService: FilterService;
     constructor(resource: T, defaultFilter?: any);

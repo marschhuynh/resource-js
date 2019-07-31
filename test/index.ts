@@ -1,4 +1,4 @@
-import { BaseResource, Model, Attribute, ResourceSetup } from "../src";
+import { BaseResource, Model, Attribute, ResourceSetup } from '../src'
 
 ResourceSetup('default', { BASE_URL: 'https://api.me.com', LIST_DATA_KEY: '_items', LIST_META_KEY: '_meta' })
 
@@ -39,7 +39,7 @@ async function main() {
 }
 
 async function schema() {
-    console.log("Get Schema", Post.schema)
+    console.log('Get Schema', Post.schema)
 }
 
 schema()

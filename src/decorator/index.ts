@@ -1,3 +1,3 @@
-import { Model, Attribute } from './model';
+import { Model, Attribute } from './model'
 
 export { Model, Attribute }

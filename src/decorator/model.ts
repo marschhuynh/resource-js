@@ -1,7 +1,7 @@
-type AttributeType = {
-    type: string,
-    required?: boolean,
-    pattern?: string,
+interface AttributeType {
+    type: string;
+    required?: boolean;
+    pattern?: string;
 }
 
 export function Model(list_url: string, item_url: string = '', namespace: string = 'default') {
@@ -13,8 +13,8 @@ export function Model(list_url: string, item_url: string = '', namespace: string
                 item_url,
                 namespace
             }, class_meta)
-        };
-        return target;
+        }
+        return target
     }
 }
 
@@ -23,8 +23,8 @@ export function Attribute(option: AttributeType = {type: 'string'}): Function {
         if (!target.constructor._schema) {
             target.constructor._schema = {}
         }
-        target.constructor._schema[propertyKey] = option;
+        target.constructor._schema[propertyKey] = option
 
-        return target;
+        return target
     }
 }

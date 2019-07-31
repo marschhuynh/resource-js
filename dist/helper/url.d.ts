@@ -5,7 +5,7 @@ declare class QueryParam {
     private _meta;
     private _params;
     private _sort;
-    constructor(params: Object, meta: MetaParam, sort: Object);
+    constructor(params: Record<string, any>, meta: MetaParam, sort: Record<string, any>);
 }
 declare const _default: {
     QueryParam: typeof QueryParam;

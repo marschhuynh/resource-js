@@ -1,9 +1,9 @@
-declare type FilterItem = {
+interface FilterItem {
     active?: boolean;
     key: string;
     op?: string;
-    value: number | string | Array<number> | Array<string> | FilterItem | FilterItem[];
-};
+    value: number | string | number[] | string[] | FilterItem | FilterItem[];
+}
 export default class FilterService {
     [index: string]: any;
     __filter: {

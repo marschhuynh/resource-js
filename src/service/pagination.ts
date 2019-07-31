@@ -1,23 +1,23 @@
-import FilterService from './filter';
+import FilterService from './filter'
 
 
 export default class PaginationService<T> {
     __query: any
-    __data: Array<T> = []
-    __selectedItems: Array<T> = []
+    __data: T[] = []
+    __selectedItems: T[] = []
     __activeItems: T
     __resource: T
-    __fetching: Boolean
+    __fetching: boolean
     __meta: any
 
     filterService: FilterService
 
     constructor(resource: T, defaultFilter: any = {}) {
-        this.__resource = resource;
-        this.__fetching = false;
-        this.__meta = {max_results: 25, page: 1};
+        this.__resource = resource
+        this.__fetching = false
+        this.__meta = {max_results: 25, page: 1}
 
-        this.filterService = new FilterService(defaultFilter);
+        this.filterService = new FilterService(defaultFilter)
         this.__query = {
             meta: this.__meta,
             filter: this.filterService.compileFilter(),
@@ -25,19 +25,19 @@ export default class PaginationService<T> {
     }
 
     get data() {
-        return this.__data;
+        return this.__data
     }
 
     get page() {
-        return this.__meta.page;
+        return this.__meta.page
     }
 
     get pageSize() {
-        return this.__meta.max_results;
+        return this.__meta.max_results
     }
 
     get total() {
-        return this.__meta.total;
+        return this.__meta.total
     }
 
     get query() {
@@ -48,7 +48,7 @@ export default class PaginationService<T> {
     }
 
     setMeta(value: any) {
-        this.__meta = value;
+        this.__meta = value
     }
 
     getResource () {
@@ -56,7 +56,7 @@ export default class PaginationService<T> {
     }
 
     setResource (resource: any) {
-        this.__resource = resource;
+        this.__resource = resource
     }
 
     nextPage() {
@@ -90,24 +90,24 @@ export default class PaginationService<T> {
     async _fetchData() {
         // Begin fetching process
         // Output will be a list instance of Resource
-        this.__fetching = true;
-        return await (this.__resource as any).QUERY(this.query, true);
+        this.__fetching = true
+        return await (this.__resource as any).QUERY(this.query, true)
     }
 
     async _setResponse(response: any) {
         // Finish fetching process
-        this.__data = response['_items'];
-        this.__meta = response['_meta'];
-        this.__fetching = false;
-        return this.__data;
+        this.__data = response['_items']
+        this.__meta = response['_meta']
+        this.__fetching = false
+        return this.__data
     }
     
     _setMeta(value: any) {
-        this.__meta = value;
+        this.__meta = value
     }
 
     refresh = async () => {
         // Fetching process
-        return await this._setResponse(await this._fetchData());
+        return await this._setResponse(await this._fetchData())
     }
 }
