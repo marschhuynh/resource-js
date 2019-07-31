@@ -34,4 +34,4 @@ export default class FilterService {
     _compile(filter: FilterItem): any;
     compileFilter(): any;
 }
-export {}
+export {};

@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "target": "ES2016",
+    "target": "es2015",
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "declaration": true,
     "allowJs": false,
-    "lib": ["es2015", "dom"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2015"
+    ],
     "sourceMap": true,
     "experimentalDecorators": true,
     "suppressImplicitAnyIndexErrors": true,

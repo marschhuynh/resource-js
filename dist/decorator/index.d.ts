@@ -1,2 +1,2 @@
-import { Model, Attribute } from './model'
-export { Model, Attribute }
+import { Model, Attribute } from './model';
+export { Model, Attribute };

@@ -1,5 +1,5 @@
-import { ViewParam, ResourceConfig, RawParams } from './types'
-import { HTTPLayer } from './datalayer'
+import { ViewParam, ResourceConfig, RawParams } from './types';
+import { HTTPLayer } from './datalayer';
 declare class DefaultModel {
     _id: string;
     _etag: string;
@@ -28,4 +28,4 @@ export default class BaseResource extends DefaultModel {
     _getChange(): any;
     save(): Promise<this>;
 }
-export {}
+export {};
