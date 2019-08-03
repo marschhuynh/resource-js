@@ -37,6 +37,8 @@ class HTTPLayer implements IDataLayer {
             url: urlBuilder(url),
         }
         if (data) request['data'] = data
+
+        console.log('URL', request)
         
         return new Promise((resolve, reject) => {
             return axios(request)
