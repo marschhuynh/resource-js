@@ -6,11 +6,11 @@ declare class HTTPLayer implements IDataLayer {
         [index: string]: HTTPLayer;
     };
     constructor(namespace: string);
-    _request(method: string, url: string, data?: any): any;
-    get(url: string): any;
-    post(url: string, data: Record<string, any>): any;
-    update(url: string, data: Record<string, any>): any;
-    replace(url: string, data: Record<string, any>): any;
-    delete(url: string): any;
+    _request(method: string, url: string, data?: any): Promise<any>;
+    get(url: string): Promise<any>;
+    post(url: string, data: Record<string, any>): Promise<any>;
+    update(url: string, data: Record<string, any>): Promise<any>;
+    replace(url: string, data: Record<string, any>): Promise<any>;
+    delete(url: string): Promise<any>;
 }
 export default HTTPLayer;
