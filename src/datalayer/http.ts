@@ -42,7 +42,7 @@ class HTTPLayer implements IDataLayer {
             return axios(request)
                 .then(resolve)
                 .catch((error: any) => {
-                    console.log('Reject', error)
+                    console.log('Reject', error.response)
                     throw error
                 })
         })
