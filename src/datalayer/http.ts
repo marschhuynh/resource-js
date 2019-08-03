@@ -29,11 +29,19 @@ class HTTPLayer implements IDataLayer {
     }
 
     async _request(method: string, url: string, data?: any): Promise<any> {
-        if (data) return await this._maner({
-            method, 
-            url: urlBuilder(url),
-            data
-        })
+        if (data) {
+            let response = []
+            try {
+                response = await this._maner({
+                    method, 
+                    url: urlBuilder(url),
+                    data
+                })
+            } catch (e) {
+                console.log('ERROR => ', e)
+            }
+            return response
+        }
         return await this._maner({
             method,
             url: urlBuilder(url)
