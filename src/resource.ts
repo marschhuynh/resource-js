@@ -82,6 +82,7 @@ export default class BaseResource extends DefaultModel {
     static async CREATE(data: Record<string, any>): Promise<any> {
         const url: string = ResourceHelper.getListUrl(this.config)
         const response = await this.datalayer.post(url, data)
+        console.log('CREATE', response)
         return this.item_transform(response, this)
     }
 
