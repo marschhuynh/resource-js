@@ -28,41 +28,41 @@ class HTTPLayer implements IDataLayer {
         return HTTPLayer.INSTANCE[namespace]
     }
 
-    _request(method: string, url: string, data?: any): any {
-        if (data) return this._maner({
+    async _request(method: string, url: string, data?: any): Promise<any> {
+        if (data) return await this._maner({
             method, 
             url: urlBuilder(url),
             data
         })
-        return this._maner({
+        return await this._maner({
             method,
             url: urlBuilder(url)
         })
     }
     
-    get(url: string) {
+    async get(url: string) {
         console.log(`get => ${url}`)
-        return this._request('get', url)
+        return await this._request('get', url)
     }
     
-    post(url: string, data: Record<string, any>) {
+    async post(url: string, data: Record<string, any>) {
         console.log('post => ', data)
-        return this._request('post', url, data)
+        return await this._request('post', url, data)
     }
     
-    update(url: string, data: Record<string, any>) {
+    async update(url: string, data: Record<string, any>) {
         console.log(`update => ${url}`)
-        return this._request('patch', url, data)
+        return await this._request('patch', url, data)
     }
     
-    replace(url: string, data: Record<string, any>) {
+    async replace(url: string, data: Record<string, any>) {
         console.log(`replace => ${url}`)
-        return this._request('put', url, data)
+        return await this._request('put', url, data)
     }
     
-    delete(url: string) {
+    async delete(url: string) {
         console.log(`delete => ${url}`)
-        return this._request('delete', url)
+        return await this._request('delete', url)
     }
 }
 
