@@ -24,30 +24,27 @@ class HTTPLayer implements IDataLayer {
             baseURL: moduleOptions.BASE_URL,
             timeout: 1000,
             validateStatus: function (status) {
-                return status >= 200 && status < 600 // default
+                return status >= 200 && status < 300 // default
             },
         })
         HTTPLayer.INSTANCE[namespace] = this
         return HTTPLayer.INSTANCE[namespace]
     }
 
-    async _request(method: string, url: string, data?: any): Promise<any> {
-        if (data) {
-            let response = []
-            try {
-                response = await this._maner({
-                    method, 
-                    url: urlBuilder(url),
-                    data
-                })
-            } catch (e) {
-                console.log('ERROR => ', e)
-            }
-            return response
+    _request(method: string, url: string, data?: any): Promise<any> {
+        const request = {
+            method, 
+            url: urlBuilder(url),
         }
-        return await this._maner({
-            method,
-            url: urlBuilder(url)
+        if (data) request['data'] = data
+        
+        return new Promise((resolve, reject) => {
+            return this._maner(request)
+                .then(resolve)
+                .catch((error: any) => {
+                    console.log('Reject', error)
+                    throw error
+                })
         })
     }
     
