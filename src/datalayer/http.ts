@@ -47,7 +47,14 @@ class HTTPLayer implements IDataLayer {
     
     async post(url: string, data: Record<string, any>) {
         console.log('post => ', data)
-        return await this._request('post', url, data)
+        let response = null
+        try {
+            response = await this._request('post', url, data)
+        } catch(e) {
+            console.log('POST ERROR', e)
+            return e
+        }
+        return response
     }
     
     async update(url: string, data: Record<string, any>) {
