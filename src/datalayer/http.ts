@@ -31,7 +31,7 @@ class HTTPLayer implements IDataLayer {
         return HTTPLayer.INSTANCE[namespace]
     }
 
-    _request(method: string, url: string, data?: any): Promise<any> {
+    async _request(method: string, url: string, data?: any): Promise<any> {
         const request = {
             method, 
             url: urlBuilder(url),
@@ -39,15 +39,15 @@ class HTTPLayer implements IDataLayer {
         if (data) request['data'] = data
 
         console.log('URL', request)
-        
-        return new Promise((resolve, reject) => {
-            return this._maner(request)
-                .then(resolve)
-                .catch((error: any) => {
-                    console.log('Reject', reject(error.response))
-                    throw error.responser
-                })
-        })
+        return await this._maner(request)
+        // return new Promise((resolve, reject) => {
+        //     return this._maner(request)
+        //         .then(resolve)
+        //         .catch((error: any) => {
+        //             console.log('Reject', reject(error.response))
+        //             throw error.responser
+        //         })
+        // })
     }
     
     async get(url: string) {
