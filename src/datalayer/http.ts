@@ -23,6 +23,9 @@ class HTTPLayer implements IDataLayer {
         this._maner = axios.create({
             baseURL: moduleOptions.BASE_URL,
             timeout: 1000,
+            validateStatus: function (status) {
+                return status >= 200 && status < 600 // default
+            },
         })
         HTTPLayer.INSTANCE[namespace] = this
         return HTTPLayer.INSTANCE[namespace]
