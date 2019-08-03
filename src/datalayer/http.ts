@@ -61,7 +61,7 @@ class HTTPLayer implements IDataLayer {
         try {
             response = await this._request('post', url, data)
         } catch(e) {
-            console.log('POST ERROR', e)
+            console.log('POST ERROR', e.response)
             return e
         }
         return response
