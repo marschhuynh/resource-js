@@ -79,7 +79,7 @@ export default class BaseResource extends DefaultModel {
 
     static async GET(id: string): Promise<any> {
         const url: string = ResourceHelper.getItemUrl(this.config, {params: {_id: id}})
-        const response = await this.datalayer.update(url)
+        const response = await this.datalayer.get(url)
         return (this as any).item_transform(response, this)
     }
 
