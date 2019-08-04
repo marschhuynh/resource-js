@@ -3,6 +3,7 @@ import { Model, Attribute } from './decorator'
 import Module, { ModuleOption } from './module'
 import FilterService from './service/filter'
 import PaginationService from './service/pagination'
+import HTTPLayer from './datalayer/http'
 
 const ResourceSetup = (namespace: string = 'default', options: ModuleOption): any => {
     console.log('Setup module', namespace)
@@ -10,10 +11,11 @@ const ResourceSetup = (namespace: string = 'default', options: ModuleOption): an
 }
 
 export { 
-    BaseResource, 
-    Model, 
     Attribute, 
-    ResourceSetup,
+    BaseResource, 
     FilterService,
-    PaginationService
+    HTTPLayer,
+    Model, 
+    PaginationService,
+    ResourceSetup
 }
