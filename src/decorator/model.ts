@@ -7,7 +7,7 @@ interface AttributeType {
 export function Model(list_url: string, item_url: string = '', namespace: string = 'default') {
     return function(target: any) {
         const class_meta = target.meta && target.meta() || {}
-        console.log('Class meta', class_meta)
+        console.log('Class meta', class_meta, target.meta, target)
         target.meta = () => {
             return Object.assign({}, {
                 list_url,
