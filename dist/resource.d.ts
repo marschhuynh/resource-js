@@ -18,7 +18,8 @@ export default class BaseResource extends DefaultModel {
     static list_transform(response: any, Resource: any): any;
     static readonly datalayer: HTTPLayer;
     static readonly config: any;
-    static QUERY(view?: ViewParam, meta?: boolean): Promise<any>;
+    static QUERY(view?: ViewParam): Promise<any>;
+    static GET(id: string): Promise<any>;
     static CREATE(data: Record<string, any>): Promise<any>;
     static UPDATE(view: ViewParam, data: Record<string, any>): Promise<any>;
     static REPLACE(view: ViewParam, data: Record<string, any>): Promise<any>;

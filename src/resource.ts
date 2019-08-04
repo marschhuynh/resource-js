@@ -71,14 +71,16 @@ export default class BaseResource extends DefaultModel {
         return Object.assign({}, DefaultConfig, meta)
     }
 
-    static async QUERY(view: ViewParam = {}, meta: boolean = false) {
+    static async QUERY(view: ViewParam = {}) {
         const url: string = ResourceHelper.getListUrl(this.config, view)
-        console.log('URl =>', url)
         const response = await this.datalayer.get(url)
-        if (meta) {
-            return this.list_transform(response, this)
-        }
-        return this.list_transform(response, this)['_items']
+        return this.list_transform(response, this)
+    }
+
+    static async GET(id: string): Promise<any> {
+        const url: string = ResourceHelper.getItemUrl(this.config, {params: {_id: id}})
+        const response = await this.datalayer.update(url)
+        return (this as any).item_transform(response, this)
     }
 
     static async CREATE(data: Record<string, any>): Promise<any> {
