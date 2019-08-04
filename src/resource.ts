@@ -126,7 +126,7 @@ export default class BaseResource extends DefaultModel {
         console.log('Saving resource')
         let instance: any
         try {
-            if (this._etag) {
+            if (this._id) {
                 instance = await this.update()
             } else {
                 instance = await this.create()
