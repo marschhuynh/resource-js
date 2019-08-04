@@ -73,6 +73,7 @@ export default class BaseResource extends DefaultModel {
 
     static async QUERY(view: ViewParam = {}, meta: boolean = false) {
         const url: string = ResourceHelper.getListUrl(this.config, view)
+        console.log('URl =>', url)
         const response = await this.datalayer.get(url)
         if (meta) {
             return this.list_transform(response, this)
