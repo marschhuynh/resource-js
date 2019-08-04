@@ -30,7 +30,7 @@ class HTTPLayer implements IDataLayer {
     }
 
     static _request(method: string, args: any) {
-        return this.http_manner['default']({
+        return HTTPLayer.INSTANCE['default']._maner({
             method,
             ...args
         })

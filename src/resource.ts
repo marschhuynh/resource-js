@@ -99,7 +99,7 @@ export default class BaseResource extends DefaultModel {
 
     static async DELETE(view: ViewParam = {}): Promise<boolean> {
         const url: string = ResourceHelper.getItemUrl(this.config, view)
-        const response = await this.datalayer.delete(url)
+        await this.datalayer.delete(url)
         return true
     }
 
