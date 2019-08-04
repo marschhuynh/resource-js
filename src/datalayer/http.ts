@@ -57,7 +57,7 @@ class HTTPLayer implements IDataLayer {
     }
 
     async get(url: string) {
-        return await HTTPLayer._request('get', url)
+        return await HTTPLayer._request('get', {url})
     }
     
     async post(url: string, args?: any) {
@@ -73,7 +73,7 @@ class HTTPLayer implements IDataLayer {
     }
     
     async delete(url: string) {
-        return await HTTPLayer._request('delete', url)
+        return await HTTPLayer._request('delete', {url})
     }
 }
 
