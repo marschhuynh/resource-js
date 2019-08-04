@@ -81,19 +81,19 @@ export default class BaseResource extends DefaultModel {
 
     static async CREATE(data: Record<string, any>): Promise<any> {
         const url: string = ResourceHelper.getListUrl(this.config)
-        const response = await this.datalayer.post(url, data)
+        const response = await this.datalayer.post(url, {data})
         return this.item_transform(response, this)
     }
 
     static async UPDATE(view: ViewParam = {}, data: Record<string, any>): Promise<any> {
         const url: string = ResourceHelper.getItemUrl(this.config, view, (this.constructor as any)._data)
-        const response = await this.datalayer.update(url, data)
+        const response = await this.datalayer.update(url, {data})
         return (this as any).item_transform(response, this)
     }
 
     static async REPLACE(view: ViewParam = {}, data: Record<string, any>): Promise<any> {
         const url: string = ResourceHelper.getItemUrl(this.config, view)
-        const response = await this.datalayer.replace(url, data)
+        const response = await this.datalayer.replace(url, {data})
         return (this as any).item_transform(response, this)
     }
 

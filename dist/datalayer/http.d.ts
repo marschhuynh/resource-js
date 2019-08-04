@@ -2,7 +2,6 @@ import { IDataLayer } from './interface';
 declare class HTTPLayer implements IDataLayer {
     _namespace: string;
     _maner: any;
-    static http_manner: any;
     static INSTANCE: {
         [index: string]: HTTPLayer;
     };

@@ -8,7 +8,6 @@ class HTTPLayer implements IDataLayer {
     _namespace: string
     _maner: any
 
-    static http_manner: any = {}
     static INSTANCE: { [index: string]: HTTPLayer } = {}
 
     constructor(namespace: string) {
@@ -30,6 +29,7 @@ class HTTPLayer implements IDataLayer {
     }
 
     static _request(method: string, args: any) {
+        console.log('Args', args)
         return HTTPLayer.INSTANCE['default']._maner({
             method,
             ...args
