@@ -21,6 +21,7 @@ export default class BaseResource extends DefaultModel {
         super()
         this._origin = Object.assign({}, data)
         this._data = Object.assign({}, data)
+        this._changed = Object.keys(data)
         
         let attributes = Object.getOwnPropertyDescriptors((this.constructor as any).schema)
         
