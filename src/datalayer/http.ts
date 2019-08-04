@@ -4,15 +4,13 @@ import { IDataLayer } from './interface'
 import Module, { ModuleOption } from '../module'
 
 
-function urlBuilder(url: string): string {
-    return [url].join('/')
-}
-
 class HTTPLayer implements IDataLayer {
     _namespace: string
     _maner: any
+
+    static http_manner: any = {}
     static INSTANCE: { [index: string]: HTTPLayer } = {}
-    
+
     constructor(namespace: string) {
         this._namespace = namespace
         if (!HTTPLayer.INSTANCE[namespace]) {
@@ -24,46 +22,58 @@ class HTTPLayer implements IDataLayer {
             baseURL: moduleOptions.BASE_URL,
             timeout: 1000,
             validateStatus: function (status) {
-                return status >= 200 && status < 300 // default
+                return status >= 200 && status < 300
             },
         })
         HTTPLayer.INSTANCE[namespace] = this
         return HTTPLayer.INSTANCE[namespace]
     }
 
-    async _request(method: string, url: string, data?: any): Promise<any> {
-        const request = {
-            method, 
-            url: urlBuilder(url),
-        }
-        if (data) request['data'] = data
+    static _request(method: string, args: any) {
+        return this.http_manner['default']({
+            method,
+            ...args
+        })
+    }
 
-        return await this._maner(request)
+    static GET(url: string, args?: any) {
+        return this._request('get', {url, ...args})
     }
-    
+
+    static POST(url: string, args?: any) {
+        return this._request('post', {url, ...args})
+    }
+
+    static PATCH(url: string, args?: any) {
+        return this._request('patch', {url, ...args})
+    }
+
+    static PUT(url: string, args?: any) {
+        return this._request('put', {url, ...args})
+    }
+
+    static DELETE(url: string, args?: any) {
+        return this._request('delete', {url, ...args})
+    }
+
     async get(url: string) {
-        console.log(`get => ${url}`)
-        return await this._request('get', url)
+        return await HTTPLayer._request('get', url)
     }
     
-    async post(url: string, data: Record<string, any>) {
-        console.log('post => ', data)
-        return await this._request('post', url, data)
+    async post(url: string, args?: any) {
+        return await HTTPLayer._request('post', {url, ...args})
     }
     
-    async update(url: string, data: Record<string, any>) {
-        console.log(`update => ${url}`)
-        return await this._request('patch', url, data)
+    async update(url: string, args?: any) {
+        return await HTTPLayer._request('patch', {url, ...args})
     }
     
-    async replace(url: string, data: Record<string, any>) {
-        console.log(`replace => ${url}`)
-        return await this._request('put', url, data)
+    async replace(url: string, args?: any) {
+        return await HTTPLayer._request('put', {url, ...args})
     }
     
     async delete(url: string) {
-        console.log(`delete => ${url}`)
-        return await this._request('delete', url)
+        return await HTTPLayer._request('delete', url)
     }
 }
 
