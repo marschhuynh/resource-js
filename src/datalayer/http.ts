@@ -20,6 +20,7 @@ class HTTPLayer implements IDataLayer {
         this._maner = axios.create({
             baseURL: moduleOptions.BASE_URL,
             timeout: 10000,
+            withCredentials: true,
             validateStatus: function (status) {
                 return status >= 200 && status < 300
             },
