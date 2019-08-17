@@ -1,6 +1,6 @@
 {
   "name": "resource-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Resource exchange for js",
   "main": "dist",
   "author": "Marsch Huynh (marsch.huynh@gmail.com))",
