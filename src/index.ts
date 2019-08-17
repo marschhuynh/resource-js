@@ -7,7 +7,9 @@ import HTTPLayer from './datalayer/http'
 
 const ResourceSetup = (namespace: string = 'default', options: ModuleOption): any => {
     console.log('Setup module', namespace)
-    return new Module(namespace, options)
+    const module = new Module(namespace, options)
+    new HTTPLayer(namespace)
+    return module
 }
 
 export { 
